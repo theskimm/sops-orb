@@ -2,6 +2,20 @@
 
 [Mozilla/Sops](https://github.com/mozilla/sops) | Orb Based on [vranystepan/sops](https://circleci.com/orbs/registry/orb/vranystepan/sops).
 
+## Publish ##
+
+Initial Release
+
+```bash
+circleci orb publish sops.yaml theskimm/sops@#.#.#
+```
+
+Incremental Updates
+
+```bash
+circleci orb publish increment <path> <namespace>/<orb> <segment> [flags]
+```
+
 ## Orb Quick Start Guide ##
 
 1. Use CircleCI version 2.1 at the top of your .circleci/config.yml file.

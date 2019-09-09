@@ -1,5 +1,3 @@
-# This code is licensed from CircleCI to the user under the MIT license. See
-# https://circleci.com/orbs/registry/licensing for details.
 # Credit to: vranystepan | Based on: https://circleci.com/orbs/registry/orb/vranystepan/sops
 version: 2.1
 
