@@ -1,0 +1,47 @@
+# This code is licensed from CircleCI to the user under the MIT license. See
+# https://circleci.com/orbs/registry/licensing for details.
+# Credit to: vranystepan | Based on: https://circleci.com/orbs/registry/orb/vranystepan/sops
+version: 2.1
+
+executors:
+  default:
+    docker:
+      - image: alpine:<< parameters.tag >>
+    parameters:
+      tag:
+        default: '3.10'
+        type: string
+
+commands:
+  aws_decrypt:
+    parameters:
+      aws_access_key_id:
+        type: env_var_name
+        default: AWS_ACCESS_KEY_ID
+      aws_secret_access_key:
+        type: env_var_name
+        default: AWS_SECRET_ACCESS_KEY
+      input_file_path:
+        type: string
+      output_file_path:
+        type: string
+      sops_release_url:
+        type: string
+        default: https://github.com/mozilla/sops/releases/download/3.3.1/sops-3.3.1.linux
+    steps:
+      - run:
+          name: download SOPS
+          command: >
+            curl -Lo sops
+            << parameters.sops_release_url >>
+            \
+              && chmod +x sops
+            sudo cp sops /usr/local/bin && rm sops
+      - run:
+          name: decrypt resource
+          command: |
+            export AWS_SECRET_ACCESS_KEY="${<< parameters.aws_secret_access_key >>}"
+            export AWS_ACCESS_KEY_ID="${<< parameters.aws_access_key_id >>}"
+            sops --decrypt << parameters.input_file_path >> > << parameters.output_file_path >>
+
+jobs: {}
