@@ -2,6 +2,8 @@
 
 [Mozilla/Sops](https://github.com/mozilla/sops) | Orb Based on [vranystepan/sops](https://circleci.com/orbs/registry/orb/vranystepan/sops).
 
+Orb Registry: [https://circleci.com/orbs/registry/orb/theskimm/sops](https://circleci.com/orbs/registry/orb/theskimm/sops)
+
 ## Publish ##
 
 Initial Release
@@ -56,4 +58,5 @@ orbs:
 | `aws_secret_access_key` | -           | -        | `AWS_SECRET_ACCESS_KEY`                                                    | `env_var_name` |
 | `input_file_path`       | -           | ✅        | -                                                                        | `string`       |
 | `output_file_path`      | -           | ✅        | -                                                                        | `string`       |
+| `output_type`      | --output-type $type           | ✅        | -                                                                        | `string`       |
 | `sops_release_url`      | -           | -        | [https://github.com/mozilla/sops/releases/download/3.3.1/sops-3.3.1.linux](https://github.com/mozilla/sops/releases/download/3.3.1/sops-3.3.1.linux) | `string`       |
