@@ -24,12 +24,12 @@ commands:
         type: string
       output_file_path:
         type: string
-      output_type:
-        description: "e.g. --output-type value | currently json, yaml, dotenv and binary are supported."
+      extra_args:
+        description: "Pass extra arguments here, e.g. --output-type value --input-type value"
         type: string
       sops_release_url:
         type: string
-        default: https://github.com/mozilla/sops/releases/download/3.3.1/sops-3.3.1.linux
+        default: https://github.com/mozilla/sops/releases/download/3.4.0/sops-3.4.0.linux
     steps:
       - run:
           name: download SOPS
@@ -44,6 +44,6 @@ commands:
           command: |
             export AWS_SECRET_ACCESS_KEY="${<< parameters.aws_secret_access_key >>}"
             export AWS_ACCESS_KEY_ID="${<< parameters.aws_access_key_id >>}"
-            sops --decrypt << parameters.output_type >> << parameters.input_file_path >> > << parameters.output_file_path >>
+            sops --decrypt << parameters.extra_args >> << parameters.input_file_path >> > << parameters.output_file_path >>
 
 jobs: {}
